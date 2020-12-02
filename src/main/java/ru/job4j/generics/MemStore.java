@@ -15,7 +15,7 @@ public class MemStore<T extends Base> implements Store<T> {
     @Override
     public boolean replace(String id, T model) {
         T element = findById(id);
-        if (element == null){
+        if (element == null) {
             return false;
         }
         mem.set(mem.indexOf(element), model);

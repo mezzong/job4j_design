@@ -5,17 +5,16 @@ import java.util.Iterator;
 public class SimpleArrayIterator<T> implements Iterator<T> {
     private final T[] data;
     private int cursor = 0;
+    private int size;
 
-    public SimpleArrayIterator(T[] data) {
+    public SimpleArrayIterator(T[] data, int size) {
         this.data = data;
+        this.size = size;
     }
 
     @Override
     public boolean hasNext() {
-        while (cursor < data.length && data[cursor] == null) {
-            cursor++;
-        }
-        return cursor < data.length;
+        return cursor < size;
     }
 
     @Override

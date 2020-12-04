@@ -50,12 +50,10 @@ public class SimpleArray<E> implements Iterable<E> {
         @Override
         public E next() {
             checkForComodification();
-            int i = cursor;
-            if (i >= size) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            cursor = i + 1;
-            return (E) container[i];
+            return (E) container[cursor++];
         }
 
         final void checkForComodification() {

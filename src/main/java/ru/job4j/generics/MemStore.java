@@ -14,26 +14,40 @@ public class MemStore<T extends Base> implements Store<T> {
 
     @Override
     public boolean replace(String id, T model) {
-        T element = findById(id);
-        if (element == null) {
+        int index = indexById(id);
+        if (index < 0) {
             return false;
         }
-        mem.set(mem.indexOf(element), model);
+        mem.set(index, model);
         return true;
     }
 
     @Override
     public boolean delete(String id) {
-        return mem.remove(findById(id));
+        int index = indexById(id);
+        if (index < 0) {
+            return false;
+        }
+        mem.remove(index);
+        return true;
     }
 
     @Override
     public T findById(String id) {
-        for (T element : mem) {
-            if (element.getId().equals(id)) {
-                return element;
+        int index = indexById(id);
+        if (index < 0) {
+            return null;
+        }
+        return mem.get(index);
+    }
+
+    private int indexById(String id) {
+        for (int i = 0; i < mem.size(); i++) {
+            if (id.equals(mem.get(i).getId())) {
+                return i;
             }
         }
-        return null;
+        return -1;
     }
+
 }

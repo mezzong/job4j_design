@@ -5,13 +5,11 @@ import java.util.NoSuchElementException;
 
 public class ForwardLinked<T> implements Iterable<T> {
     private Node<T> head;
-    private Node<T> last;
 
     public void add(T value) {
-        Node<T> node = new Node<T>(value, null);
+        Node<T> node = new Node<>(value, null);
         if (head == null) {
             head = node;
-            last = node;
             return;
         }
         Node<T> tail = head;
@@ -19,43 +17,25 @@ public class ForwardLinked<T> implements Iterable<T> {
             tail = tail.next;
         }
         tail.next = node;
-        this.last = node;
+    }
+
+    public void addFirst(T value) {
+        Node<T> node = new Node<>(value, head);
+        head = node;
     }
 
     public T deleteFirst() {
-        if (head != null) {
-            T rsl = head.value;
-            head = head.next;
-            return rsl;
-        } else {
+        if (head == null) {
             throw new NoSuchElementException();
         }
-    }
-
-    public T deleteLast() {
-        if (head != null) {
-            if (head == last) {
-                T rsl = head.value;
-                head = null;
-                last = null;
-                return rsl;
-            }
-            Node<T> currentNode = head;
-            while (currentNode.next != last) {
-                currentNode = currentNode.next;
-            }
-            T rsl = last.value;
-            currentNode.next = null;
-            last = currentNode;
-            return rsl;
-        } else {
-            throw new NoSuchElementException();
-        }
+        T rsl = head.value;
+        head = head.next;
+        return rsl;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
+        return new Iterator<>() {
             private Node<T> node = head;
 
             @Override
@@ -76,7 +56,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     private static class Node<T> {
-        private T value;
+        private final T value;
         private Node<T> next;
 
         public Node(T value, Node<T> next) {

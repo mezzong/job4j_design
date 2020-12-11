@@ -3,7 +3,7 @@ package ru.job4j.collection;
 import java.util.Iterator;
 
 public class SimpleSet<E> implements Iterable<E> {
-    SimpleArray<E> array = new SimpleArray<>();
+    private final SimpleArray<E> array = new SimpleArray<>();
 
     public void add(E e) {
         for (E value : array) {
@@ -21,7 +21,7 @@ public class SimpleSet<E> implements Iterable<E> {
 
     private class SimpleSetIterator implements Iterator<E> {
 
-        Iterator<E> simpleArrayIterator = array.iterator();
+        private final Iterator<E> simpleArrayIterator = array.iterator();
 
         @Override
         public boolean hasNext() {

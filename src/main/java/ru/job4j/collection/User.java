@@ -39,6 +39,11 @@ public class User {
                 Objects.equals(birthday, user.birthday);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthday);
+    }
+
     public static void main(String[] args) {
         User user1 = new User("1", 2,
                 new GregorianCalendar(2020, Calendar.DECEMBER, 11));
@@ -47,6 +52,9 @@ public class User {
         Map<User, Object> map = new HashMap<>();
         map.put(user1, new Object());
         map.put(user2, new Object());
-        System.out.println(map);
+
+        for (Map.Entry<User, Object> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public class LogFilter {
     public static List<String> filter(String file) {
         List<String> result = new ArrayList<>();
-        try(BufferedReader in = new BufferedReader(new FileReader(file))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             while (in.ready()) {
                 String s = in.readLine();
                 String[] line = s.split(" ");
@@ -17,7 +17,7 @@ public class LogFilter {
                     result.add(s);
                 }
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;

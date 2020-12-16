@@ -6,31 +6,22 @@ public class SimpleSet<E> implements Iterable<E> {
     private final SimpleArray<E> array = new SimpleArray<>();
 
     public void add(E e) {
-        for (E value : array) {
-            if (value.equals(e)) {
-                return;
+        if (!contains(e)) {
+            array.add(e);
+        }
+    }
+
+    public boolean contains(E value) {
+        for (E el : array) {
+            if (el.equals(value)) {
+                return true;
             }
         }
-        array.add(e);
+        return false;
     }
 
     @Override
     public Iterator<E> iterator() {
-        return new SimpleSetIterator();
-    }
-
-    private class SimpleSetIterator implements Iterator<E> {
-
-        private final Iterator<E> simpleArrayIterator = array.iterator();
-
-        @Override
-        public boolean hasNext() {
-            return simpleArrayIterator.hasNext();
-        }
-
-        @Override
-        public E next() {
-            return simpleArrayIterator.next();
-        }
+        return array.iterator();
     }
 }

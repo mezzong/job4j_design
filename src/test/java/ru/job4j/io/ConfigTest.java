@@ -9,7 +9,7 @@ public class ConfigTest {
 
     @Test
     public void whenPairWithComment() {
-        String path = "app.properties";
+        String path = "./dataio/app.properties";
         Config config = new Config(path);
         config.load();
         assertThat(

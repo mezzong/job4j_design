@@ -35,7 +35,8 @@ public class LogFilter {
     }
 
     public static void main(String[] args) {
-        List<String> log = filter("log.txt");
+        List<String> log = filter("./dataio/log.txt");
+        save(log, "./dataio/flog.txt");
         System.out.println(log);
     }
 }

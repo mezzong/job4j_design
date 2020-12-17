@@ -10,7 +10,7 @@ public class ResultFile {
                     String s = (i * j) + " ";
                     out.write(s.getBytes());
                 }
-                out.write("\n".getBytes());
+                out.write(System.lineSeparator().getBytes());
             }
         } catch (Exception e) {
             e.printStackTrace();

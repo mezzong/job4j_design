@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Analizy {
-    public void unavailable(String source, String target) {
+    public static void unavailable(String source, String target) {
         try (BufferedReader in = new BufferedReader(new FileReader(source))) {
             List<String> result = new ArrayList<>();
             String start = "";
@@ -40,6 +40,6 @@ public class Analizy {
     }
 
     public static void main(String[] args) {
-        new Analizy().unavailable("./dataio/alog.txt", "./dataio/unavailable.csv");
+        Analizy.unavailable("./dataio/alog.txt", "./dataio/unavailable.csv");
     }
 }

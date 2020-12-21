@@ -13,7 +13,8 @@ public class ArgsName {
 
     private void parse(String[] args) {
         if (args.length == 0) {
-            throw new IllegalArgumentException("Arguments is null. Usage java -jar args.jar -Xmx=512 -encoding = UTF-8");
+            throw new IllegalArgumentException("Arguments is null. "
+                    + "Usage java -jar args.jar -Xmx=512 -encoding = UTF-8");
         }
         for (String arg : args) {
             if (!arg.startsWith("-") && !arg.contains("=")) {

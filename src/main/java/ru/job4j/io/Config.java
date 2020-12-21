@@ -20,10 +20,12 @@ public class Config {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             Map<String, String> result = read.lines()
                     .filter(x -> !Objects.equals(x, "") && !Objects.equals(x.substring(0, 2), "##"))
+                    .map(e -> e.split("="))
+                    .filter(e -> e.length == 2)
                     .collect(
                             Collectors.toMap(
-                                    e -> e.split("=")[0],
-                                    e -> e.split("=")[1]
+                                    e -> e[0],
+                                    e -> e[1]
                             )
                     );
             values.putAll(result);

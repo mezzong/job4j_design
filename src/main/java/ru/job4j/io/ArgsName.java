@@ -16,6 +16,9 @@ public class ArgsName {
             throw new IllegalArgumentException("Arguments is null. Usage java -jar args.jar -Xmx=512 -encoding = UTF-8");
         }
         for (String arg : args) {
+            if (!arg.startsWith("-") && !arg.contains("=")) {
+                throw new IllegalArgumentException(arg + "does not match -key=value");
+            }
             String[] arr = arg.substring(1).split("=");
             values.put(arr[0], arr[1]);
         }

@@ -19,7 +19,7 @@ public class Config {
     public void load() {
         try (BufferedReader read = new BufferedReader(new FileReader(this.path))) {
             Map<String, String> result = read.lines()
-                    .filter(x -> !Objects.equals(x, "") && !Objects.equals(x.substring(0, 2), "##"))
+                    .filter(x -> !Objects.equals(x, "") && !Objects.equals(x.substring(0, 2), "#"))
                     .map(e -> e.split("="))
                     .filter(e -> e.length == 2)
                     .collect(

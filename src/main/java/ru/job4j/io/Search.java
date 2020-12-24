@@ -17,8 +17,8 @@ public class Search {
         search(start, args[1]).forEach(System.out::println);
     }
 
-    public static List<Path> search(Path root, String ext) throws IOException {
-        SearchFiles searcher = new SearchFiles(p -> p.toFile().getName().endsWith(ext));
+    public static List<Path> search(Path root, String exclude) throws IOException {
+        SearchFiles searcher = new SearchFiles(p -> !p.toFile().getName().endsWith(exclude));
         Files.walkFileTree(root, searcher);
         return searcher.getPaths();
     }

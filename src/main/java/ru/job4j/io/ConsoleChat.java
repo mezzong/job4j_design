@@ -1,11 +1,8 @@
 package ru.job4j.io;
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Random;
 
 public class ConsoleChat {
     private static final String OUT = "закончить";
@@ -20,38 +17,48 @@ public class ConsoleChat {
     }
 
     public void run() {
-        boolean isActive = true;
-        boolean isRun = true;
-        try (BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in));
-             BufferedReader answersIn = new BufferedReader(new FileReader(botAnswers));
-             BufferedWriter log = new BufferedWriter(new FileWriter(new File(path)))) {
-            List<String> lines = new ArrayList<>();
+        List<String> answers = new ArrayList<>();
+        List<String> listLog = new ArrayList<>();
+        try (BufferedReader answersIn = new BufferedReader(new FileReader(botAnswers))) {
             while (answersIn.ready()) {
-                lines.add(answersIn.readLine());
+                answers.add(answersIn.readLine());
             }
-            while (isRun) {
-                String question = consoleIn.readLine();
-                log.write(question + System.lineSeparator());
-                if (question.equals(STOP)) {
-                    isActive = false;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        try (BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in))) {
+            boolean isActive = true;
+            boolean isRun = true;
+            while(isRun) {
+                    String question = consoleIn.readLine();
+                    listLog.add(question);
+                    if (question.equals(STOP)) {
+                        isActive = false;
+                    }
+                    if (question.equals(OUT)) {
+                        isActive = false;
+                        isRun = false;
+                    }
+                    if (isActive) {
+                        int rand = (int) (Math.round((answers.size() - 1) * Math.random()));
+                        String answer = answers.get(rand);
+                        System.out.println(answer);
+                        listLog.add(answer);
+                    }
+                    if (question.equals(CONTINUE)) {
+                        isActive = true;
+                    }
                 }
-                if (question.equals(OUT)) {
-                    isActive = false;
-                    isRun = false;
-                }
-                if (isActive) {
-                    int rand = (int) (Math.round((lines.size() - 1) * Math.random()));
-                    String answer = lines.get(rand);
-                    System.out.println(answer);
-                    log.write(answer + System.lineSeparator());
-                }
-                if (question.equals(CONTINUE)) {
-                    isActive = true;
-                }
+            } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try(BufferedWriter log = new BufferedWriter(new FileWriter(new File(path)))){
+            for (String line : listLog) {
+                log.write(line + System.lineSeparator());
             }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

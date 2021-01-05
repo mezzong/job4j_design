@@ -54,7 +54,8 @@ public class ConsoleChat {
         }
         try(BufferedWriter log = new BufferedWriter(new FileWriter(new File(path)))){
             for (String line : listLog) {
-                log.write(line + System.lineSeparator());
+                log.write(line);
+                log.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();

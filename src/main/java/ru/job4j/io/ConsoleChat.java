@@ -40,7 +40,7 @@ public class ConsoleChat {
                         isRun = false;
                     }
                     if (isActive) {
-                        int rand = (int) (Math.round((answers.size() - 1) * Math.random()));
+                        int rand = (int) (Math.round(answers.size() * Math.random()));
                         String answer = answers.get(rand);
                         System.out.println(answer);
                         listLog.add(answer);

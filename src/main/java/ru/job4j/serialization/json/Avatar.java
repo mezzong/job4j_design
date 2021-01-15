@@ -9,8 +9,8 @@ public class Avatar {
 
     @Override
     public String toString() {
-        return "Avatar{" +
-                "url='" + url + '\'' +
-                '}';
+        return "Avatar{"
+                + "url='" + url + '\''
+                + '}';
     }
 }

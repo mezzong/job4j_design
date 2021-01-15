@@ -26,10 +26,10 @@ public class Contact implements Serializable {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", number='" + number + '\'' +
-                '}';
+        return "Contact{"
+                + "name='" + name + '\''
+                + ", number='" + number + '\''
+                + '}';
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -40,9 +40,8 @@ public class Contact implements Serializable {
         System.out.println(contact2);
         File tempFile = Files.createTempFile(null, null).toFile();
 
-
         try (FileOutputStream fos = new FileOutputStream(tempFile);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)){
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(contact1);
             oos.writeObject(contact2);
         }

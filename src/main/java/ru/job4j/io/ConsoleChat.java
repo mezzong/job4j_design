@@ -23,13 +23,13 @@ public class ConsoleChat {
             while (answersIn.ready()) {
                 answers.add(answersIn.readLine());
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         try (BufferedReader consoleIn = new BufferedReader(new InputStreamReader(System.in))) {
             boolean isActive = true;
             boolean isRun = true;
-            while(isRun) {
+            while (isRun) {
                     String question = consoleIn.readLine();
                     listLog.add(question);
                     if (question.equals(STOP)) {
@@ -52,7 +52,7 @@ public class ConsoleChat {
             } catch (Exception e) {
             e.printStackTrace();
         }
-        try(BufferedWriter log = new BufferedWriter(new FileWriter(new File(path)))){
+        try (BufferedWriter log = new BufferedWriter(new FileWriter(new File(path)))) {
             for (String line : listLog) {
                 log.write(line);
                 log.newLine();

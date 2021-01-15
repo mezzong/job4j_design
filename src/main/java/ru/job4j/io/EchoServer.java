@@ -11,7 +11,7 @@ public class EchoServer {
 
     private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         try (ServerSocket server = new ServerSocket(9000)) {
             boolean isRun = true;
             while (isRun) {

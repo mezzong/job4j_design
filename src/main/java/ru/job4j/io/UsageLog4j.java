@@ -17,6 +17,8 @@ public class UsageLog4j {
         double num6 = 6.0D;
         boolean b7 = true;
         char ch8 = 'P';
-        LOG.debug("Args num1 = {}, num2 = {}, num3 = {}, num4 = {}, num5 = {}, num6 = {}, b7 = {}, ch8 = {} ",num1 , num2, num3, num4, num5, num6, b7, ch8);
+        LOG.debug("Args num1 = {}, num2 = {}, num3 = {},"
+                       + " num4 = {}, num5 = {}, num6 = {}, b7 = {}, ch8 = {} ",
+                num1, num2, num3, num4, num5, num6, b7, ch8);
     }
 }

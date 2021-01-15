@@ -22,17 +22,17 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "sex=" + sex +
-                ", age=" + age +
-                ", nickname='" + nickname + '\'' +
-                ", avatar=" + avatar +
-                ", favoriteNumbers=" + Arrays.toString(favoriteNumbers) +
-                '}';
+        return "User{"
+                + "sex=" + sex
+                + ", age=" + age
+                + ", nickname='" + nickname + '\''
+                + ", avatar=" + avatar
+                + ", favoriteNumbers=" + Arrays.toString(favoriteNumbers)
+                + '}';
     }
 
     public static void main(String[] args) {
-        User user = new User(true, 25, "nick", new Avatar("/img/avatar.jpg"),1, 2, 31);
+        User user = new User(true, 25, "nick", new Avatar("/img/avatar.jpg"), 1, 2, 31);
         Gson gson = new GsonBuilder().create();
         String jsonUser = gson.toJson(user);
         System.out.println(jsonUser);

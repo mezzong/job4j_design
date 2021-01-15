@@ -20,7 +20,8 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     String str;
-                    while (!(str = in.readLine()).isEmpty()) {
+                    while (in.ready()) {
+                        str = in.readLine();
                         System.out.println(str);
                         if (str.contains("GET /?msg=")) {
                             if (str.contains("Hello")) {

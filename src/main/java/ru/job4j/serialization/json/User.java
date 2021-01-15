@@ -31,6 +31,26 @@ public class User {
                 + '}';
     }
 
+    public boolean isSex() {
+        return sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public Avatar getAvatar() {
+        return avatar;
+    }
+
+    public int[] getFavoriteNumbers() {
+        return favoriteNumbers;
+    }
+
     public static void main(String[] args) {
         User user = new User(true, 25, "nick", new Avatar("/img/avatar.jpg"), 1, 2, 31);
         Gson gson = new GsonBuilder().create();

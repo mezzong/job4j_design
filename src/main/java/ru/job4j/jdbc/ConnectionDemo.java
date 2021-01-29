@@ -13,14 +13,14 @@ public class ConnectionDemo {
             IOException {
         Properties prs = new Properties();
         ClassLoader classLoader = ConnectionDemo.class.getClassLoader();
-        try (InputStream in = classLoader.getResourceAsStream("app.properties")){
+        try (InputStream in = classLoader.getResourceAsStream("app.properties")) {
             prs.load(in);
         }
         Class.forName("org.postgresql.Driver");
         String url = prs.getProperty("url");
         String login = prs.getProperty("login");
         String password = prs.getProperty("password");
-        try(Connection connection = DriverManager.getConnection(url, login, password)){
+        try (Connection connection = DriverManager.getConnection(url, login, password)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());

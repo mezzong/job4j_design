@@ -46,13 +46,7 @@ insert into teens(name, gender) values ('Tom', 'male');
 insert into teens(name, gender) values ('Bob', 'male');
 insert into teens(name, gender) values ('Stan', 'male');
 
-create temporary table teens2(
-    id serial primary key,
-    name varchar(30),
-    gender varchar(30)
-);
-insert into teens2 select * from teens;
-select * from teens cross join teens2 t where teens.gender != t.gender;
+select * from teens as t cross join teens t2 where t.gender != t2.gender;
 
 
 

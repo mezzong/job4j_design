@@ -118,12 +118,12 @@ public class SimpleHashMap<K, V> implements Iterable<V> {
         }
         if (first.next != null) {
             element = first.next;
-            do {
-                element = element.next;
+            while (element != null) {
                 if (element.hash == hash && key.equals(element.key)) {
                     return element;
                 }
-            } while (element.next != null);
+                element = element.next;
+            }
         }
         return null;
     }

@@ -11,7 +11,8 @@ public class FileCache implements Cache {
 
     private final Map<String, SoftReference<String>> store = new HashMap<>();
 
-    private void add(String key, SoftReference<String> value) {
+    @Override
+    public void add(String key, SoftReference<String> value) {
         store.put(key, value);
     }
 

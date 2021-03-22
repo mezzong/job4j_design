@@ -18,11 +18,11 @@ public class FileCache implements Cache {
 
     @Override
     public String getValue(String key) {
-        String result;
-        SoftReference<String> ref = store.get(key);
-        if (ref != null) {
-            result = ref.get();
-        } else {
+        String result = null;
+        if (store.containsKey(key)) {
+            result = store.get(key).get();
+        }
+        if (result == null) {
             result = load(key);
             if (result != null) {
                 add(key, new SoftReference<>(result));
